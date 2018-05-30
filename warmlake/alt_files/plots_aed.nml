@@ -1,0 +1,30 @@
+!-----------------------------------------------------------
+! plots_window defines the size of the window used for
+! display of the plots
+!-----------------------------------------------------------
+
+&plots_window
+  width = 1200
+  height = 650
+/
+
+!-----------------------------------------------------------
+! plots
+!  nplots - the number of plots
+!  title  - list of titles, one for each plot
+!  min_z  - list of minimum values for the z component
+!  max_z  - list of maximum values for the z component
+!
+! For the moment really only the min/max values are worth
+! tinkering with
+!-----------------------------------------------------------
+&plots
+  nplots = 9
+  plot_width = 300
+  plot_height = 125
+
+  title = 'Temperature', 'Salinity','Phyto','DOC','POC','Oxygen','NO3','NH4','PO4'
+  vars  = 'temp','salt','aed_phytoplankton_green','aed_organic_matter_doc','aed_organic_matter_poc','aed_oxygen_oxy','aed_nitrogen_nit','aed_nitrogen_amm','aed_phosphorus_frp'
+  min_z = 10.0, 0.0,   0.0,   0.0,  0.0,   0.0,  0.0,  0.0, 0.0
+  max_z = 30.0, 1.0,  80.0,  80.0, 80.0, 300.0, 80.0, 80.0, 1.0
+/

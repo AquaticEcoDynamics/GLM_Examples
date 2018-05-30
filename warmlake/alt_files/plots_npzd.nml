@@ -1,0 +1,30 @@
+!-----------------------------------------------------------
+! plots_window defines the size of the window used for
+! display of the plots
+!-----------------------------------------------------------
+
+&plots_window
+  width = 800
+  height = 650
+/
+
+!-----------------------------------------------------------
+! plots
+!  nplots - the number of plots
+!  title  - list of titles, one for each plot
+!  min_z  - list of minimum values for the z component
+!  max_z  - list of maximum values for the z component
+!
+! For the moment really only the min/max values are worth
+! tinkering with
+!-----------------------------------------------------------
+&plots
+  nplots = 6
+  plot_width = 300
+  plot_height = 125
+  title = 'Temperature', 'Salinity','N','P','Z','D'
+  vars  = 'temp','salt','gotm_npzd_nut','gotm_npzd_phy','gotm_npzd_zoo','gotm_npzd_det'
+  min_z = 10.0, 0.0,  0.0, 0.0,  0.0,   0.,
+  max_z = 30.0, 1.0,  6.0, 0.5, 0.1,   2.5
+/
+
