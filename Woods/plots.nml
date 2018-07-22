@@ -29,8 +29,8 @@
 ! label_font = 'helvetica'
 ! label_size =  10
 
-  title = 'Temperature', 'Salinity'
-  vars  = 'temp','salt'
+  title = 'Temperature', 'Tau_b'
+  vars  = 'temp','taub'
   min_z =   5.0, 0.0
-  max_z =  35.0, 1.0
+  max_z =  35.0, 0.5
 /
