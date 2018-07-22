@@ -24,19 +24,20 @@
    min_layer_thick = 0.15
    max_layer_thick = 1.50
    density_model = 1
+   non_avg = .true.
 /
 !-------------------------------------------------------------------------------
 ! mixing
 !-------------------------------------------------------------------------------
 &mixing
   surface_mixing = 1
-  coef_mix_conv = 0.125
+  coef_mix_conv  = 0.125
   coef_wind_stir = 0.23
   coef_mix_shear = 0.2
-  coef_mix_turb = 0.51
-  coef_mix_KH = 0.3
-  deep_mixing = 2
-  coef_mix_hyp = 0.5
+  coef_mix_turb  = 0.51
+  coef_mix_KH    = 0.3
+  deep_mixing    = 2
+  coef_mix_hyp   = 0.5
   diff = 0.
 /
 !-------------------------------------------------------------------------------
@@ -161,7 +162,7 @@
    cloud_mode  = 4
    !-- BC file details
    subdaily    = .true.
-   meteo_fl    = 'bcs/met_1997_2004.csv'
+   meteo_fl    = 'bcs/met_hourly.csv'
    wind_factor = 0.9
    !-- Parameters
    ce = 0.0013
@@ -207,19 +208,19 @@
 !-------------------------------------------------------------------------------
 &inflow
    num_inflows    = 6
-   names_of_strms = 'Jordan','Neger','Yarmuch','GroundInflow','Kinnert7','SaltCanal'
-  !subm_flag      = .false.,.false.,.false.,.true.,.false.,.false.
+   names_of_strms = 'Inflow1','Inflow2','Inflow3','Inflow4','Inflow5','Inflow6'
+   subm_flag      = .false.,.false.,.false.,.true.,.false.,.false.
    strm_hf_angle  = 85.0, 85.0, 85.0, 85.0, 85.0, 85.0
    strmbd_slope   = 4., 4., 4., 4., 4., 4.
    strmbd_drag    = 0.0160, 0.0160, 0.0160, 0.0160, 0.0160, 0.0160,
    inflow_factor  = 1.0,1.0,1.0,1.0,1.0,1.0
-   inflow_fl      = 'bcs/inflow_1_v2_wq_1997_2004.csv',
-                    'bcs/inflow_2_v2_wq_1997_2004.csv',
-                    'bcs/inflow_3_v2_wq_1997_2004.csv',
-                    'bcs/inflow_4_v2_wq_1997_2004.csv',
-                    'bcs/inflow_5_v2_wq_1997_2004.csv',
-                    'bcs/inflow_6_v2_wq_1997_2004.csv'
-   inflow_varnum  = 8,
+   inflow_fl      = 'bcs/inflow_1.csv',
+                    'bcs/inflow_2.csv',
+                    'bcs/inflow_3.csv',
+                    'bcs/inflow_4.csv',
+                    'bcs/inflow_5.csv',
+                    'bcs/inflow_6.csv'
+   inflow_varnum  = 3,
    inflow_vars    = 'FLOW','TEMP','SALT',
                     'OXY_oxy',
                     'SIL_rsi',
@@ -234,15 +235,15 @@
 !-------------------------------------------------------------------------------
 &outflow
    num_outlet   = 1
-   !flt_off_sw   = .false.
+  !flt_off_sw   = .false.
    outlet_type  = 1
    outl_elvs    = -215.5
    bsn_len_outl = 18000
    bsn_wid_outl = 11000
-   outflow_fl   = 'bcs/outflow_v2_1997_2004.csv'
+   outflow_fl   = 'bcs/outflow.csv'
    outflow_factor = 1.0
-   !seepage  = .true.
-   !seepage_rate   = 0.01
+  !seepage        = .true.
+  !seepage_rate   = 0.01
 /
 !-------------------------------------------------------------------------------
 ! sediment zones & properties
