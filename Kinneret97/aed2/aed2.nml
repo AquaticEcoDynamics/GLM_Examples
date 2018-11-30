@@ -110,7 +110,7 @@
     Ksed_dic = 20.0
     theta_sed_dic = 1.08
     pH_initial = 7.5
-    atmco2 = 370e-6
+    atm_co2 = 370e-6
     ionic = 0.1
    !-- CH4 --
     ch4_initial = 27.6
@@ -228,15 +228,15 @@
           theta_minerl = 1.08
           Kpom_hydrol  = 31.25
           Kdom_minerl  = 31.25
-          doc_miner_reactant_variable='OXY_oxy'
+   !      doc_miner_reactant_variable='OXY_oxy'
           doc_miner_product_variable='CAR_dic'
           don_miner_product_variable='NIT_amm'
           dop_miner_product_variable='PHS_frp'
    !-- Refractory organic matter (optional)
           simRPools    = .false.
-          Rdocr_miner  = 0.0001
-          Rdonr_miner  = 0.0001
-          Rdopr_miner  = 0.0001
+   !      Rdocr_miner  = 0.0001
+   !      Rdonr_miner  = 0.0001
+   !      Rdopr_miner  = 0.0001
           Rcpom_bdown  = 0.0001
           X_cpom_n     = 0.0005
           X_cpom_p     = 0.0001
@@ -349,7 +349,7 @@
               'OGM_poc',
               'PHY_green'
    TOC_varscale = 1.0, 1.0, 1.0, 1.0
-   TSS_vars = 'TRC_ss1',
-              'PHY_green' !, ....
+!  TSS_vars = 'TRC_ss1',
+!             'PHY_green' !, ....
 !  TSS_varscale = 0.1,0.1            !,  <vector same length as TSS names>
 /

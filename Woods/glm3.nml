@@ -2,11 +2,11 @@
 ! general model setup
 !-------------------------------------------------------------------------------
 !
-! sim_name         [string]  title of simulation       
-! max_layers       [integer] maximum number of layers  
-! min_layer_vol    [real]    minimum layer volume (m3 * 1000)      
-! min_layer_thick  [real]    minimum layer thickness (m)  
-! max_layer_thick  [real]    maximum layer thickness (m) 
+! sim_name         [string]  title of simulation
+! max_layers       [integer] maximum number of layers
+! min_layer_vol    [real]    minimum layer volume (m3 * 1000)
+! min_layer_thick  [real]    minimum layer thickness (m)
+! max_layer_thick  [real]    maximum layer thickness (m)
 ! Kw               [real]    background light attenuation (m**-1)
 ! coef_inf_entrain [real]    entrainment coefficient for inflows
 ! coef_mix_conv    [real]    mixing efficiency - convective overturn
@@ -115,19 +115,19 @@
 !                    latitude
 ! longitude        [float, minimum = -360, maximum = 360, unit = deg East]
 !                    longitude
-! base_elev        [float]   
+! base_elev        [float]
 !                    base elevation (m)
-! crest_elev       [float]   
+! crest_elev       [float]
 !                    crest elevation (m)
-! bsn_len          [float]   
+! bsn_len          [float]
 !                    basin length at crest (m)
-! bsn_wid          [float]   
+! bsn_wid          [float]
 !                    basin width at crest (m)
-! bsn_vals         [integer] 
+! bsn_vals         [integer]
 !                    number of depth points on height-area relationship
-! H                [float] 
+! H                [float]
 !                    elevations (m)   (comma separated list, len=bsn_vals)
-! A                [float] 
+! A                [float]
 !                    area (m2 * 1000) (comma separated list, len=bsn_vals)
 !
 !-------------------------------------------------------------------------------
@@ -140,7 +140,7 @@
    bsn_len    = 4873.6500,
    bsn_wid    = 4114.2830,
    bsn_vals   = 12,
-   !   H (m)  A (m2) 
+   !   H (m)  A (m2)
    A = 400,989600,6338400,7461200,9056800,9638800,10522000,10888000,11172400,11500400,11949600,12395200,
    H = 732.2029,732.7029,733.2029,733.7029,734.2029,734.7029,735.2029,735.7029,736.2029,736.7029,737.2029,737.7029,
 /
@@ -184,7 +184,7 @@
 !                     path to output directory (set permissions)
 ! out_fn            [string]
 !                     name of output netcdf file
-! out_lkn           [logical]  
+! out_lkn           [logical]
 !                     output Lake Number to a file
 ! nsave             [integer, minimum = 1, maximum = 86400]
 !                     save results every 'nsave' timesteps
@@ -197,7 +197,7 @@
 ! csv_point_fname   [string]
 !                     name of csv output file(s) (comma separated list)
 ! csv_point_nvars   [integer]
-!                     number of variables to output into csv 
+!                     number of variables to output into csv
 ! csv_point_vars    [string]
 !                     list of names of variables to output, - order IS important
 !
@@ -232,7 +232,7 @@
                     'PHY_green',
                     'PHY_crypto',
                     'PHY_diatom'
-                    
+
    ! Combined outlet file & overflow
    csv_outlet_allinone = .false.
    csv_outlet_fname = 'outlet_'
@@ -255,7 +255,7 @@
                      'PHY_crypto',
                      'PHY_diatom'
    csv_ovrflw_fname = "overflow"
-   
+
 /
 !-------------------------------------------------------------------------------
 ! initial condition profiles
@@ -278,7 +278,7 @@
     ! GLM
     the_temps   = 5.10,5.10
     the_sals    = 0.5, 0.5
-    ! WQ 
+    ! WQ
     num_wq_vars = 2
     wq_names =      'OXY_oxy',
 					'TRC_ss1'
@@ -356,7 +356,7 @@
 /
 
 !-------------------------------------------------------------------------------
-! inflows 
+! inflows
 !-------------------------------------------------------------------------------
 !
 !  num_inflows       [integer]   number of inflowing streams (0+)
@@ -368,8 +368,8 @@
 !  inflow_fl         [string]    inflow data filename(s) (comma separated list)
 !  inflow_varnum     [integer]   number of columns (excluding date) to be read
 !  inflow_vars       [string]    variable names of inflow file columns
-!                                This should be a comma separated list, and must 
-!                                include FLOW, SALT & TEMP (for GLM), and 
+!                                This should be a comma separated list, and must
+!                                include FLOW, SALT & TEMP (for GLM), and
 !                                optionally can include FABM var names.
 !
 !-------------------------------------------------------------------------------
