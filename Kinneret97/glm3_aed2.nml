@@ -18,13 +18,13 @@
 ! general model setup
 !-------------------------------------------------------------------------------
 &glm_setup
-   sim_name = 'Example Kinneret Simulation'
-   max_layers = 500
-   min_layer_vol = 0.025
-   min_layer_thick = 0.15
-   max_layer_thick = 1.50
-   density_model = 1
-   non_avg = .true.
+   sim_name        = 'Example Kinneret GLM-AED2 Simulation'
+   max_layers      = 500
+   min_layer_vol   =   0.025
+   min_layer_thick =   0.15
+   max_layer_thick =   1.50
+   density_model   =   1          ! TEOS-10
+   non_avg         = .true.
 /
 !-------------------------------------------------------------------------------
 ! mixing
@@ -45,25 +45,26 @@
 !-------------------------------------------------------------------------------
 &wq_setup
  !-- Choose 'aed2' or 'fabm' (aed2 is the default)
-   wq_lib = 'aed2'
-   wq_nml_file = 'aed2/aed2.nml'
-   ode_method = 1
-   split_factor = 1
+   wq_lib            = 'aed2'
+   wq_nml_file       = 'aed2/aed2.nml'
+   ode_method        = 1
+   split_factor      = 1
    bioshade_feedback = .true.
-   repair_state = .true.
-  !mobility_off = .false.
-/!-------------------------------------------------------------------------------
+   repair_state      = .true.
+  !mobility_off      = .false.
+/
+!-------------------------------------------------------------------------------
 ! morphometry
 !-------------------------------------------------------------------------------
 &morphometry
    lake_name  = 'Kinneret'
-   latitude   =  32
-   longitude  =  35
-   base_elev  = -252.9
-   crest_elev = -203.9
+   latitude   =     32
+   longitude  =     35
+   base_elev  =   -252.9
+   crest_elev =   -203.9
    bsn_len    =  21000
    bsn_wid    =  13000
-   bsn_vals   =  45
+   bsn_vals   =     45
    !   H(m) & A(m2), both have length bsn_vals
    H = -252.9,  -251.9,  -250.9,  -249.9,  -248.9,  -247.9,  -246.9,  -245.9,
        -244.9,  -243.9,  -242.9,  -241.9,  -240.9,  -239.9,  -238.9,
@@ -98,41 +99,32 @@
 &output
    out_dir = 'output'
    out_fn  = 'output'
-   nsave = 6
-   ! General summary file
+   nsave = 6             ! 1 means every step (eg hour)
+  ! General summary file
    csv_lake_fname = 'lake'
-   ! Depth specific outputs
+  ! Depth specific outputs
    csv_point_nlevs = 2
    csv_point_fname = 'WQ_'
    csv_point_at    = 5,30
    csv_point_nvars = 7
-   csv_point_vars  = 'temp',
-                     'salt',
-                     'OXY_oxy',
-                     'SIL_rsi',
-                     'NIT_amm',
-                     'NIT_nit',
-                     'PHS_frp'
-! Combined outlet file & overflow
-!   csv_outlet_allinone = .false.
-!   csv_outlet_fname = 'outlet_'
-!   csv_outlet_nvars = 3
-!   csv_outlet_vars = 'flow',
-!                     'temp',
-!                     'salt',
-!                     'OXY_oxy',
-!   csv_ovrflw_fname = "overflow"
+   csv_point_vars  = 'temp','salt','OXY_oxy','SIL_rsi','NIT_amm','NIT_nit','PHS_frp'
+ ! Combined outlet file & overflow
+  !csv_outlet_allinone = .false.
+  !csv_outlet_fname = 'outlet_'
+  !csv_outlet_nvars = 3
+  !csv_outlet_vars = 'flow','temp','salt','OXY_oxy'
+  !csv_ovrflw_fname = "overflow"
 /
 !-------------------------------------------------------------------------------
 ! initial condition profiles
 !-------------------------------------------------------------------------------
 &init_profiles
-    lake_depth = 43
-    num_depths = 3
-    the_depths = 1,    20,   40
+    lake_depth  = 43
+    num_depths  = 3
+    the_depths  =   1 , 20 , 40
     ! GLM
-    the_temps  = 18.00,18.00,18.00
-    the_sals   = 0.5, 0.5, 0.5
+    the_temps   = 18.0,18.0,18.0
+    the_sals    =  0.5, 0.5, 0.5
     ! WQ
     num_wq_vars = 6
     wq_names    =  'OGM_don',
@@ -153,17 +145,18 @@
 !-------------------------------------------------------------------------------
 &meteorology
    met_sw      = .true.
-   lw_type     = 'LW_IN'
    rain_sw     = .false.
+   lw_type     = 'LW_IN'
    atm_stab    = 0
    fetch_mode  = 0
   !rad_mode    = 1
-   albedo_mode = 1
    cloud_mode  = 4
    !-- BC file details
    subdaily    = .true.
    meteo_fl    = 'bcs/met_hourly.csv'
    wind_factor = 0.9
+   lw_factor   = 1.0
+   lw_offset   = 0.0
    !-- Parameters
    ce = 0.0013
    ch = 0.0013
@@ -176,12 +169,15 @@
 ! light
 !-------------------------------------------------------------------------------
 &light
-   light_mode = 0
-   n_bands = 4
-   light_extc = 1.0, 0.5, 2.0, 4.0
-   energy_frac = 0.51, 0.45, 0.035, 0.005
+   light_mode   = 0
+   n_bands      = 4
+   light_extc   = 1.0, 0.5, 2.0, 4.0
+   energy_frac  = 0.51, 0.45, 0.035, 0.005
    Benthic_Imin = 10
-   Kw = 0.57
+   Kw           =  0.57
+   albedo_mode  =  1
+  !albedo_mean  =  0.08
+  !albedo_amplitude = 0.02
 /
 !-------------------------------------------------------------------------------
 ! bird_model
@@ -196,15 +192,6 @@
 /
 !-------------------------------------------------------------------------------
 ! inflows
-!-------------------------------------------------------------------------------
-!
-!  num_inflows       number of inflowing streams
-!  names_of_strms    names of streams
-!  strm_hf_angle     stream half angle (degrees)
-!  strmbd_slope      streambed slope (degrees)
-!  strmbd_drag       streambed drag coefficient
-!  inflow_fl         inflow data filename
-!
 !-------------------------------------------------------------------------------
 &inflow
    num_inflows    = 6
@@ -234,13 +221,13 @@
 ! outflows
 !-------------------------------------------------------------------------------
 &outflow
-   num_outlet   = 1
-  !flt_off_sw   = .false.
-   outlet_type  = 1
-   outl_elvs    = -215.5
-   bsn_len_outl = 18000
-   bsn_wid_outl = 11000
-   outflow_fl   = 'bcs/outflow.csv'
+   num_outlet     = 1
+  !flt_off_sw     = .false.
+   outlet_type    = 1
+   outl_elvs      = -215.5
+   bsn_len_outl   = 18000
+   bsn_wid_outl   = 11000
+   outflow_fl     = 'bcs/outflow.csv'
    outflow_factor = 1.0
   !seepage        = .true.
   !seepage_rate   = 0.01
@@ -249,16 +236,16 @@
 ! sediment zones & properties
 !-------------------------------------------------------------------------------
 &sediment
-  sed_heat_Ksoil = 0.0
-  sed_temp_depth = 0.2
-  sed_temp_mean = 5,10,20
-  sed_temp_amplitude = 6,8,10
-  sed_temp_peak_doy = 80, 70, 60
-  benthic_mode = 1
-  n_zones = 3
-  zone_heights = 10., 20., 50.
-  sed_reflectivity = 0.1, 0.01, 0.01
-  sed_roughness = 0.1, 0.01, 0.01
+  sed_heat_Ksoil     = 0.0
+  sed_temp_depth     = 0.2
+  benthic_mode       = 2
+  n_zones            = 3
+  zone_heights       = 10, 20, 50.
+  sed_temp_mean      =  5, 10, 20
+  sed_temp_amplitude =  6,  8, 10
+  sed_temp_peak_doy  = 80, 70, 60
+  sed_reflectivity   =0.1,0.01,0.01
+  sed_roughness      =0.1,0.01,0.01
 /
 !-------------------------------------------------------------------------------
 ! ice & snow
