@@ -7,3 +7,4 @@
 * Woods Lake
 * Ellen Brook Wetland
 * Sparkling Lake
+* Canning Weirpool
