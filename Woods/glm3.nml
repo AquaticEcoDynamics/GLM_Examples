@@ -8,6 +8,19 @@
 ! min_layer_thick  [real]    minimum layer thickness (m)
 ! max_layer_thick  [real]    maximum layer thickness (m)
 ! Kw               [real]    background light attenuation (m**-1)
+!-------------------------------------------------------------------------------
+&glm_setup
+   sim_name = 'GLM Simulation'
+   max_layers = 500
+   min_layer_vol = 0.025
+   min_layer_thick = 0.15
+   max_layer_thick = 1.50
+   density_model = 1
+/
+
+!-------------------------------------------------------------------------------
+! Mixing Parameters
+!-------------------------------------------------------------------------------
 ! coef_inf_entrain [real]    entrainment coefficient for inflows
 ! coef_mix_conv    [real]    mixing efficiency - convective overturn
 ! coef_wind_stir   [real]    mixing efficiency - wind stirring
@@ -16,34 +29,6 @@
 ! coef_mix_KH      [real]    mixing efficiency - hypolimnetic Kelvin-Helmholtz turbulent billows
 ! coef_mix_hyp     [real]    mixing efficiency - hypolimnetic turbulence
 !-------------------------------------------------------------------------------
-!&glm_setup
-!   sim_name = 'GLM Simulation'
-!   max_layers = 500
-!   min_layer_vol = 0.025
-!   min_layer_thick = 0.15
-!   max_layer_thick = 0.30
-!   !-- Light Parameters
-!   Kw = 0.8
-!   !-- Mixing Parameters
-!   coef_mix_conv = 0.125
-!   coef_wind_stir = 0.23
-!   coef_mix_shear = 0.2
-!   coef_mix_turb = 0.51
-!   coef_mix_KH = 0.3
-!   coef_mix_hyp = 0.5
-!   Benthic_Imin = 0.1
-!  mobility_off = .true.
-!  non_avg = .true.
-!  deep_mixing = .true.
-!/
-&glm_setup
-   sim_name = 'Simulation'
-   max_layers = 500
-   min_layer_vol = 0.025
-   min_layer_thick = 0.15
-   max_layer_thick = 1.50
-   density_model = 1
-/
 &mixing
   surface_mixing = 1
   coef_mix_conv = 0.125
@@ -56,30 +41,9 @@
   diff = 0.
 /
 
-
-
-
-
 !-------------------------------------------------------------------------------
-! fabm setup
+! Water quality
 !-------------------------------------------------------------------------------
-! ode_method        [integer]
-!                     ODE numerical scheme for source and sink dynamics
-!                     1: first-order explicit (not positive)
-!                     2: second-order explicit Runge-Kutta (not positive)
-!                     3: fourth-order explicit Runge-Kutta (not positive)
-!                     4: Patankar (first-order, not conservative)
-!                     5: Patankar-RK (second-order, not conservative)
-!                     6: Patankar-RK (does not work, not conservative)
-!                     7: Modified Patankar (1st-order, conservat., posit.)
-!                     8: Modified Patankar-RK (2nd-order, conservat., posit.)
-!                     9: Modified Patankar-RK (does not work, conservat.,
-!                       posit.)
-!                     10: Extended Modified Patankar (1st-order, conservat.,
-!                       posit.)
-!                     11: Extended Modified Patankar-RK (2nd-order, conservat.,
-!                       posit.)
-!                     This variable is used only if bio_calc = True
 ! split_factor      [integer, minimum = 1]
 !                     number of biogeochemical time steps per physical time step
 ! bioshade_feedback [bool]
@@ -92,18 +56,17 @@
 !                     GLM specific option for FABM to do benthic fluxes only
 !                     in bottom layer, or on flanks of all layers (.true.)
 !-------------------------------------------------------------------------------
-!&wq_setup
-!!-- Choose 'aed2' or 'fabm' (aed2 is the default)
-!   wq_lib = 'aed2'
-!!  wq_nml_file = 'aed/aed2.nml'
-!   ode_method = 1
-!   split_factor = 1
-!   bioshade_feedback = .true.
-!   repair_state = .true.
-!!  mobility_off = .false.
-!!  multi_ben = .true.
-!   benthic_mode = 1
-!/
+&wq_setup
+   wq_lib = 'aed'
+   wq_nml_file = 'aed/aed.nml'
+   ode_method = 1
+   split_factor = 1
+   bioshade_feedback = .true.
+   repair_state = .true.
+!  mobility_off = .false.
+!  multi_ben = .true.
+!  benthic_mode = 1
+/
 
 !-------------------------------------------------------------------------------
 ! lake details
@@ -326,6 +289,12 @@
    !rain_threshold = 0.001
    !runoff_coef    = 0.0
 /
+
+!-------------------------------------------------------------------------------
+! Light params
+!-------------------------------------------------------------------------------
+! Kw               [real]    background light attenuation (m**-1)
+!-------------------------------------------------------------------------------
 &light
    light_mode = 0
    n_bands = 4
