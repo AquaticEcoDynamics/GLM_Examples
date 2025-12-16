@@ -4,8 +4,8 @@
 !-----------------------------------------------------------
 
 &plots_window
-  width = 1000
-  height=  300
+  width = 1500
+  height = 900
 /
 
 !-----------------------------------------------------------
@@ -19,7 +19,7 @@
 ! tinkering with
 !-----------------------------------------------------------
 &plots
-  nplots = 2
+  nplots = 4
   plot_width = 400
   plot_height = 200
 
@@ -29,8 +29,8 @@
 ! label_font = 'helvetica'
 ! label_size =  10
 
-  title = 'Temperature', 'Salinity'
-  vars  = 'temp','salt'
-  min_z =  -1.0, 0.0
-  max_z =  40.0, 1.6
+  title = 'Temperature', 'Salinity',   'Oxy',     'OXY_atm'
+  vars  =    'temp',      'salt',    'OXY_oxy', 'OXY_oxy_atm'
+  min_z =     0.0,          0.0,        0.0,      -81.0
+  max_z =    35.0,          0.6,       500.0,     850.0
 /
